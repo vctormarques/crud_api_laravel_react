@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DeveloperRequest as Request;
 use App\Developer;
+use Illuminate\Support\Carbon;
 
 class DevelopersController extends Controller
 {
@@ -14,7 +15,9 @@ class DevelopersController extends Controller
 
     public function store(Request $request)
     {
-        return Developer::create($request->all());
+        $data = $request->all();
+        $data['datanascimento'] = Carbon::createFromFormat('d/m/Y', $data['datanascimento'])->format('Y-m-d');;
+        return Developer::create($data);
     }
 
     public function update(Request $request, Developer $developer)
