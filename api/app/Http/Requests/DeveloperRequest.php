@@ -23,6 +23,26 @@ class DeveloperRequest extends FormRequest
      */
     public function rules()
     {
+        return  ($this->isMethod('POST') ? $this->store() : $this->update());
+
+    }
+ 
+    public function destroy()
+    {
+        return [
+            //
+        ];
+    }        
+
+    public function view()
+    {
+        return [
+            //
+        ];
+    }
+
+    public function store()
+    {
         return [
             'nome' => 'required',
             'sexo' => 'required|max:1',
@@ -31,6 +51,14 @@ class DeveloperRequest extends FormRequest
             'datanascimento' => 'required',
         ];
     }
+
+    public function update()
+    {
+        return [
+            //
+        ];
+    }
+
 
     public function messages()
     {
