@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 phpunit.xml
 webpack.mix.js
+package-lock.json
+yarn.lock

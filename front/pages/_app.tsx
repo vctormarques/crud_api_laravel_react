@@ -1,23 +1,21 @@
 import { ChakraProvider } from "@chakra-ui/react"
-import  Header  from "../src/components/Header";
-import { createContext } from 'react';
-import {  Container, useColorModeValue } from "@chakra-ui/react";
+import Header from "../src/components/Header";
+import { Container, useColorModeValue } from "@chakra-ui/react";
 import { ModalProvider } from '../src/components/Modals/context'
 import ModalGenerico from '../src/components/Modals';
-
 
 function MyApp({ Component, pageProps }) {
 
   return (
     <ChakraProvider>
-      <ModalProvider>
-        <Container maxW="container.xl" bg={useColorModeValue('gray.50', 'gray.900')} px={0}>
-          <Header/>
+      <Container maxW="container.lg" bg={useColorModeValue('gray.50', 'gray.900')} px={0} >
+        <ModalProvider>
+          <Header />
           <Component {...pageProps} />
-          <ModalGenerico > </ModalGenerico>
-        </Container>
-      </ModalProvider>
-  </ChakraProvider>
+          <ModalGenerico />
+        </ModalProvider>
+      </Container>
+    </ChakraProvider>
   )
 }
 

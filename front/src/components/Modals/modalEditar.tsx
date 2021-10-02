@@ -8,25 +8,17 @@ import api from '../../services/api';
 
 
 function ModalCadastrar() {
-    const { fecharModal } = useModalContext();
+    const { modalState: { nomeEditar, idadeEditar, sexoEditar, hobbyEditar,datanascimentoEditar, uid  }, fecharModal } = useModalContext();
+    const [nome, setNome] = useState(nomeEditar);
+    const [idade, setIdade] = useState(idadeEditar);
+    const [sexo, setSexo] = useState(sexoEditar);
+    const [hobby, setHobby] = useState(hobbyEditar);
+    const [datanascimento, setDataNascimento] = useState(datanascimentoEditar);
 
-    // interface InterfaceDesenvolvedor {
-    //     nome: string, 
-    //     sexo: string, 
-    //     idade: number, 
-    //     hobby: string, 
-    //     datanascimento: Date,
-    //   }
-    
-    const [nome, setNome] = useState("");
-    const [sexo, setSexo] = useState("");
-    const [idade, setIdade] = useState("");
-    const [hobby, setHobby] = useState("");
-    const [datanascimento, setDataNascimento] = useState("");
-
-    const btnCadastrar = (e) => {
+    const btnEditar = (e) =>  {
         e.preventDefault();
-        api.post('/',
+        const {id} = e.target;
+        api.put(`/${id}`,
             {
                 nome: nome,
                 sexo: sexo,
@@ -34,6 +26,7 @@ function ModalCadastrar() {
                 hobby: hobby,
                 datanascimento: datanascimento,
             }).then(() => {
+                alert("Editado com sucesso")
                 window.location.reload();
             }).catch(function (error) {
                 console.log(error);
@@ -70,7 +63,7 @@ function ModalCadastrar() {
                         name={sexo}
                         placeholder="Selecione..."
                         onChange={(e) => setSexo(e.target.value)}
-                        value={sexo}>
+                        value={sexoEditar}>
                         <option value="M">Homem</option>
                         <option value="F">Mulher</option>
                         <option value="X">Prefiro não informar</option>
@@ -83,7 +76,7 @@ function ModalCadastrar() {
                         resize="none"
                         name={hobby}
                         onChange={(e) => setHobby(e.target.value)}
-                        value={hobby} />
+                        value={hobbyEditar} />
                 </FormControl>
 
                 <FormControl mt={4}>
@@ -91,14 +84,17 @@ function ModalCadastrar() {
                     <InputMask mask="99/99/9999"
                         name={datanascimento}
                         onChange={(e) => setDataNascimento(e.target.value)}
-                        value={datanascimento}>
+                        value={datanascimentoEditar}>
                         {(inputProps) => <Input type="data" name="datanascimento" />}
                     </InputMask>
                 </FormControl>
             </ModalBody>
             <ModalFooter>
-                <Button colorScheme="teal" onClick={btnCadastrar}>Cadastrar</Button>
-                <Button ml={4} onClick={fecharModal}  >Fechar</Button>
+                <Button 
+                    colorScheme="orange" id={uid}
+                    onClick={btnEditar}>Editar
+                </Button>
+                <Button ml={4} onClick={fecharModal} >Fechar</Button>
             </ModalFooter>
         </>
     )

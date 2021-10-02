@@ -1,17 +1,11 @@
 import { ReactNode } from "react";
 import { Button } from '@chakra-ui/react'
 import { MouseEventHandler } from "react-router/node_modules/@types/react";
-type ButtonProps={
+type ButtonProps = {
     colorScheme: string;
-    onClick:  MouseEventHandler;
+    onClick: MouseEventHandler;
     children: ReactNode;
 }
-// const ButtonComponent = (props: ButtonProps) => {
-//     return (
-//         <Button colorScheme={props.colorScheme} onClick={onClick} > {props.text} </Button>
-//     )
-// }
-
 
 const ButtonComponent = ({ children, onClick, colorScheme }: ButtonProps) => {
     return (
