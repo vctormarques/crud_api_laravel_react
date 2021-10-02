@@ -6,7 +6,6 @@ import { useModalContext } from '../Modals/context';
 
 const Home = () => {
   const { abrilModal } = useModalContext();
-  const abrirModal = () => abrilModal({ title: 'Cadastrar um desenvolvedor' });
   return (
     <>
            <HStack spacing={8} alignItems={'center'} bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
@@ -15,7 +14,7 @@ const Home = () => {
             as={'nav'}
             spacing={4}
             display={{ base: 'none', md: 'flex' }}>
-                <ButtonComponent colorScheme="teal" onClick={abrirModal}> Cadastrar </ButtonComponent>
+                <ButtonComponent colorScheme="teal" onClick={() => abrilModal({ title: 'Cadastrar um desenvolvedor', destino: 'Cadastrar' })}> Cadastrar </ButtonComponent>
           </HStack>
         </HStack>
 

@@ -3,7 +3,7 @@ import  Header  from "../src/components/Header";
 import { createContext } from 'react';
 import {  Container, useColorModeValue } from "@chakra-ui/react";
 import { ModalProvider } from '../src/components/Modals/context'
-import Modal from '../src/components/Modals';
+import ModalGenerico from '../src/components/Modals';
 
 
 function MyApp({ Component, pageProps }) {
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }) {
         <Container maxW="container.xl" bg={useColorModeValue('gray.50', 'gray.900')} px={0}>
           <Header/>
           <Component {...pageProps} />
-          <Modal />
+          <ModalGenerico > </ModalGenerico>
         </Container>
       </ModalProvider>
   </ChakraProvider>

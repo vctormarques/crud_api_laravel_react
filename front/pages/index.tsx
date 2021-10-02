@@ -5,7 +5,7 @@ import Axios from 'axios';
 import React, { useRef, useState, useEffect } from 'react';
 import Moment from 'moment';
 import { useHistory } from 'react-router-dom';
-
+import  ButtonComponent  from '../src/components/Button';
 import {
   Container, Table, Thead, Tbody, Tr, Th, Td, HStack, useColorModeValue, Link, IconButton, Box, Button, useDisclosure, FormControl, Input, FormLabel, Select,
   NumberInput, NumberInputStepper, NumberInputField, NumberIncrementStepper, NumberDecrementStepper, Textarea, Center, Text
@@ -13,8 +13,9 @@ import {
 import { AiTwotoneEdit, AiOutlineClose } from 'react-icons/ai';
 import InputMask from 'react-input-mask';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, } from "@chakra-ui/react";
+import { useModalContext } from '../src/components/Modals/context';
 
-export default function Home2() {
+export default function Home() {
   const { isOpen: isModalCadastrar, onOpen: onModalCadastrar, onClose: onModalCadastrarClose } = useDisclosure()
   const { isOpen: isModalEditar, onOpen: onModalEditar, onClose: onModalEditarClose } = useDisclosure()
   const { isOpen: isModalExcluir, onOpen: onModalExcluir, onClose: onModalExcluirClose } = useDisclosure()
@@ -22,11 +23,19 @@ export default function Home2() {
     setNome(nome.map((val) => val.id === id));
   }
 
-  const [nome, setNome] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [idade, setIdade] = useState("");
-  const [hobby, setHobby] = useState("");
-  const [datanascimento, setDataNascimento] = useState("");
+  const { abrilModal } = useModalContext();
+
+const [nome, setNome] = useState("");
+const [sexo, setSexo] = useState("");
+const [idade, setIdade] = useState("");
+const [hobby, setHobby] = useState("");
+const [datanascimento, setDataNascimento] = useState("");
+
+  // const [nome, setNome] = useState("");
+  // const [sexo, setSexo] = useState("");
+  // const [idade, setIdade] = useState("");
+  // const [hobby, setHobby] = useState("");
+  // const [datanascimento, setDataNascimento] = useState("");
   const [nomeList, setnomeList] = useState([]);
   const [data, setData] = useState({
     nome: "",
@@ -108,67 +117,7 @@ export default function Home2() {
             <Button onClick={onModalCadastrarClose} mr={3}>Fechar</Button>
           </ModalFooter>
       </ModalsComponent> */}
-{/* 
-<Modal
-isOpen={isModalCadastrar}
-onClose={onModalCadastrarClose}
->
-<ModalOverlay />
-<ModalContent >
-  <ModalHeader>Cadastrar novo desenvolvedor</ModalHeader>
-  <ModalCloseButton />
-   <form onSubmit={btnCadastrar}> 
-    <ModalBody pb={6}>
-      <FormControl>
-        <FormLabel>Nome</FormLabel>
-        <Input
-          type="text"
-        />
-      </FormControl>
 
-      <FormControl id="idade" mt={4}>
-        <FormLabel>Idade</FormLabel>
-        <Input
-          type="number"
-          name="idade"
-        />
-      </FormControl>
-
-      <FormControl mt={4}>
-        <FormLabel>Sexo</FormLabel>
-        <Select
-          name="sexo"
-          placeholder="Selecione...">
-          <option value="M">Homem</option>
-          <option value="F">Mulher</option>
-          <option value="X">Prefiro não informar</option>
-        </Select>
-      </FormControl>
-
-      <FormControl mt={4}>
-        <FormLabel>Hobby</FormLabel>
-        <Textarea
-          resize="none"
-          name="hobby"/>
-      </FormControl>
-
-      <FormControl mt={4}>
-        <FormLabel>Data de Nascimento</FormLabel>
-        <InputMask mask="99/99/9999">
-          {(inputProps) => <Input type="data" name="datanascimento" />}
-        </InputMask>
-      </FormControl>
-    </ModalBody>
-  {/* </form> 
-
-   <ModalFooter>
-    <Button colorScheme="blue" mr={3} onClick={btnCadastrar}>
-      Cadastrar
-    </Button>
-    <Button onClick={onModalCadastrarClose} mr={3}>Fechar</Button>
-  </ModalFooter> 
-</ModalContent>
-</Modal> */}
 
       <Modal
         isOpen={isModalEditar}
@@ -295,15 +244,15 @@ onClose={onModalCadastrarClose}
                 <Tr>
                   <Td>
                     <Center >
-                      <IconButton
-                        onClick={() => { btnDelete(val.id) }}
-                        size="xs"
-                        variant="outline"
-                        colorScheme="red"
-                        aria-label="Excluir"
-                        fontSize="18px"
-                        icon={<AiOutlineClose />}
-                      />
+                        <IconButton
+                          onClick={() => abrilModal({ title: 'Excluir Desenvolvedor', destino: 'Excluir', nome: val.nome })} 
+                          size="xs"
+                          variant="outline"
+                          colorScheme="red"
+                          aria-label="Excluir"
+                          fontSize="18px"
+                          icon={<AiOutlineClose />}
+                        />
                     </Center>
                   </Td>
                   <Td>
