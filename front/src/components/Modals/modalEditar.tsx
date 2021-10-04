@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 import { useModalContext } from './context';
 import { useState } from 'react';
 import api from '../../services/api';
-
+import Moment from 'moment';
 
 function ModalCadastrar() {
     const { modalState: { nomeEditar, idadeEditar, sexoEditar, hobbyEditar,datanascimentoEditar, uid  }, fecharModal } = useModalContext();
@@ -84,7 +84,7 @@ function ModalCadastrar() {
                     <InputMask mask="99/99/9999"
                         name={datanascimento}
                         onChange={(e) => setDataNascimento(e.target.value)}
-                        value={datanascimentoEditar}>
+                        value={Moment(datanascimentoEditar).format('L')}>
                         {(inputProps) => <Input type="data" name="datanascimento" />}
                     </InputMask>
                 </FormControl>
