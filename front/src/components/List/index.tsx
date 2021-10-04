@@ -78,7 +78,7 @@ export default function Lista() {
                   </Td>
                   <Td> {val.nome} </Td>
                   <Td> {val.sexo} </Td>
-                  <Td>{Moment(val.datanascimento).format('L')} </Td>
+                  <Td>{Moment(val.datanascimento, 'YYYY-MM-DD').format('DD/MM/YYYY')} </Td>
                   <Td> {val.hobby} </Td>
                   <Td textAlign="center"> {val.idade} </Td>
                 </Tr>

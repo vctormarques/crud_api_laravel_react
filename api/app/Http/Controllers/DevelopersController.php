@@ -22,8 +22,10 @@ class DevelopersController extends Controller
 
     public function update(Request $request, Developer $developer)
     {
-        $developer->update($request->all());
-        return $developer;
+
+        $data = $request->all();
+        $data['datanascimento'] = Carbon::createFromFormat('d/m/Y', $data['datanascimento'])->format('Y-m-d');;
+        return $developer->update($data);
     }
 
     public function show(Developer $developer)
