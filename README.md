@@ -43,5 +43,7 @@ CRUD desenvolvido com API em Laravel e front React Js.
 
  👨🏾‍💻 Print da tela
 <hr>
-![image](https://user-images.githubusercontent.com/32543344/175381190-9bbf235e-ac93-4b57-9f4b-011d05249de0.png)
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/32543344/175381190-9bbf235e-ac93-4b57-9f4b-011d05249de0.png" width="350" title="hover text">
+</p>
